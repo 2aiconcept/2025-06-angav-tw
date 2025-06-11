@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow">
+        <div class="card-body">
+          <h2 class="text-center mb-4">Connexion</h2>
+
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <!-- Email -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" class="form-control" [class.is-invalid]="email?.invalid && email?.touched"
+                formControlName="email" placeholder="votre@email.com" />
+              @if (email?.invalid && email?.touched) {
+              <div class="invalid-feedback">
+                @if (email?.errors?.['required']) {
+                L'email est obligatoire
+                }
+                @if (email?.errors?.['email']) {
+                Format d'email invalide
+                }
+              </div>
+              }
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3">
+              <label for="password" class="form-label">Mot de passe</label>
+              <div class="input-group">
+                <input type="text" id="password" class="form-control"
+                  [class.is-invalid]="password?.invalid && password?.touched" formControlName="password"
+                  placeholder="Votre mot de passe" />
+              </div>
+              @if (password?.invalid && password?.touched) {
+              <div class="invalid-feedback d-block">
+                @if (password?.errors?.['required']) {
+                Le mot de passe est obligatoire
+                }
+                @if (password?.errors?.['minlength']) {
+                Le mot de passe doit contenir au moins 5 caractères
+                }
+              </div>
+              }
+            </div>
+
+
+            <!-- Error message -->
+            @if (loginError) {
+            <div class="alert alert-danger" role="alert">
+              {{ loginError }}
+            </div>
+            }
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary w-100" [disabled]="form.invalid || isLoading">
+              @if (isLoading) {
+              <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+              Connexion...
+              } @else {
+              Se connecter
+              }
+            </button>
+          </form>
+
+          <!-- Links -->
+          <div class="text-center mt-3">
+            <p class="mb-0">
+              Pas encore de compte ?
+              <a routerLink="/signup" class="text-decoration-none">
+                Créer un compte
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

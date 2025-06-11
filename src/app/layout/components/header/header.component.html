@@ -1,0 +1,25 @@
+<div class="container-fluid py-3">
+  <div class="row align-items-center">
+
+    <div class="col">
+      <h1 class="h3 mb-0 text-primary">Mini CRM - Formation Angular avancé</h1>
+    </div>
+    <div class="col-auto">
+      @if (!isLoggedIn()) {
+      <span class="text-muted">Bienvenue dans votre CRM</span>
+      } @else {
+      <div class="row">
+        <div class="col">
+          <div ngbDropdown class="d-inline-block">
+            <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+              UserName
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button ngbDropdownItem (click)="logOut()">Log Out</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>

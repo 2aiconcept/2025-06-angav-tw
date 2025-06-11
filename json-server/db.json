@@ -1,0 +1,83 @@
+{
+  "users": [
+    {
+      "email": "olivier@mail.com",
+      "password": "$2a$10$NO.ijqmDDUbN6muphXewI.8.ICLwgSAD0IzSXXfw3t0NLcQVDO8QG",
+      "username": "Oliver",
+      "id": "sr99BII"
+    },
+    {
+      "email": "admin@mini-crm.com",
+      "password": "$2a$10$NO.ijqmDDUbN6muphXewI.8.ICLwgSAD0IzSXXfw3t0NLcQVDO8QG",
+      "username": "Admin",
+      "id": "admin01"
+    },
+    {
+      "email": "user@test.com",
+      "password": "$2a$10$NO.ijqmDDUbN6muphXewI.8.ICLwgSAD0IzSXXfw3t0NLcQVDO8QG",
+      "username": "TestUser",
+      "id": "test123"
+    },
+    {
+      "email": "test@mini-crm.com",
+      "password": "$2a$10$8xh7hPZ5Bt0pXGCxMjLdeeVsi8mIlX265yXMX/f7NY5gqMuZZ2MLC",
+      "id": "QS2ZGb9"
+    },
+    {
+      "email": "test2@mini-crm.com",
+      "password": "$2a$10$E7c12wv12r7Pa0r6ljEGc.uMF1PAKvhXzl03STX99T4hmS.L0q9hW",
+      "username": "Admin",
+      "id": "kq3n4Ly"
+    }
+  ],
+  "orders": [
+    {
+      "id": "aBc123D",
+      "description": "ordinateur portable",
+      "quantity": 2,
+      "price": 1200,
+      "status": "complete",
+      "customer": "Tech Solutions"
+    },
+    {
+      "id": "xYz789E",
+      "description": "souris gaming",
+      "quantity": 5,
+      "price": 80,
+      "status": "pending",
+      "customer": "Gaming Store"
+    },
+    {
+      "id": "mNp456F",
+      "description": "clavier mécanique",
+      "quantity": 3,
+      "price": 150,
+      "status": "complete",
+      "customer": "Office Pro"
+    },
+    {
+      "id": "qRs321G",
+      "description": "webcam HD",
+      "quantity": 1,
+      "price": 200,
+      "status": "pending",
+      "customer": "Video Conf Ltd"
+    },
+    {
+      "description": "écran",
+      "customer": "Atos",
+      "quantity": 1,
+      "price": 400,
+      "status": "Pending",
+      "id": "LMbpXR0"
+    },
+    {
+      "description": "écran",
+      "customer": "Atos",
+      "quantity": 1,
+      "price": 400,
+      "status": "Completed",
+      "id": "hrqRAKJ"
+    }
+  ]
+}

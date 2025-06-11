@@ -1,0 +1,16 @@
+<app-ui-layout>
+  <app-header header></app-header>
+  <nav nav class="mt-2 p-2">
+    <ul class="nav " [ngClass]="tablayout">
+      @if (isLoggedIn()) {
+      <li class="nav-item mb-2">
+        <a class="nav-link text-white" aria-current="page" routerLink="/dashboard"
+          routerLinkActive="active">Dashboard</a>
+      </li>
+      <li class="nav-item mb-2">
+        <a class="nav-link text-white" aria-current="page" routerLink="/orders" routerLinkActive="active">Orders</a>
+      </li>
+      }
+    </ul>
+  </nav>
+</app-ui-layout>
