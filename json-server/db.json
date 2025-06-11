@@ -32,14 +32,6 @@
   ],
   "orders": [
     {
-      "id": "aBc123D",
-      "description": "ordinateur portable",
-      "quantity": 2,
-      "price": 1200,
-      "status": "complete",
-      "customer": "Tech Solutions"
-    },
-    {
       "id": "xYz789E",
       "description": "souris gaming",
       "quantity": 5,
@@ -78,6 +70,14 @@
       "price": 400,
       "status": "Completed",
       "id": "hrqRAKJ"
+    },
+    {
+      "description": "écran",
+      "customer": "CGI",
+      "quantity": 10,
+      "price": 300,
+      "status": "Pending",
+      "id": "lFQTZsM"
     }
   ]
 }
