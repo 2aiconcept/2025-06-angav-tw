@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SignalDataService {
-
-  constructor() { }
+  version = signal(1);
+  increment() {
+    this.version.set(this.version() + 1);
+  }
 }

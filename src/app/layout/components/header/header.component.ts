@@ -1,5 +1,6 @@
 import { Component, inject, input, output } from '@angular/core';
 import { AuthService } from '@auth/services';
+import { SignalDataService } from '@dashboard/services';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -9,9 +10,11 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
+  signalService = inject(SignalDataService);
+  numVersion = this.signalService.version;
   authService = inject(AuthService);
   isLoggedIn = this.authService.isLoggedIn;
   logOut() {
-    this.authService.logOut();
+    this.authService.logout();
   }
 }

@@ -62,4 +62,4 @@ For more information on using the Angular CLI, including detailed command refere
 
 - nettoyer le code avec les console log
 - découper nos fichiers de routes (lisibilité/maintenabilite/scalabilite)
--
+- lazy loading

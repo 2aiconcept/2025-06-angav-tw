@@ -28,6 +28,12 @@
       "password": "$2a$10$E7c12wv12r7Pa0r6ljEGc.uMF1PAKvhXzl03STX99T4hmS.L0q9hW",
       "username": "Admin",
       "id": "kq3n4Ly"
+    },
+    {
+      "email": "christophegueroult@gmail.com",
+      "password": "$2a$10$jcs8vrqHay2e/.W2mq/vSO1qGRlgIQTqLEob1OjB9XsEfs1ejXNzy",
+      "username": "Christophe",
+      "id": "JoPLu9R"
     }
   ],
   "orders": [

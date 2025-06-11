@@ -1,1 +1,19 @@
-<p>signals-demo-page works!</p>
+<div class="container-fluid">
+  <h4>Observables</h4>
+  <hr>
+  <div>
+    <h6>Valeur : {{ count() }}</h6>
+    <button (click)="increment()">+1</button>
+    <button (click)="double()">x2</button>
+    <button (click)="reset()">Reset</button>
+  </div>
+  <hr>
+  <div>
+    <h6>Prix HT : {{ priceHT() }}€</h6>
+    <h6>Prix TTC : {{ priceTTC() }}€</h6>
+    <h6>TVA : {{ tvaAmount() }}€</h6>
+
+    <button (click)="changePrice()">Changer le prix</button>
+    <button (click)="incrementVersion()">+1 num de version</button>
+  </div>
+</div>

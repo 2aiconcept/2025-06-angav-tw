@@ -1,1 +1,8 @@
-<p>nav works!</p>
+<ul class="nav " [ngClass]="tablayout">
+  @for (item of navLinks; track $index) {
+  <li class="nav-item mb-2">
+    <a class="nav-link" [ngClass]="textColor" aria-current="page" [routerLink]="item.route"
+      routerLinkActive="active">{{item.label}}</a>
+  </li>
+  }
+</ul>

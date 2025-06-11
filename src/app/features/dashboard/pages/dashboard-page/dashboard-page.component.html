@@ -1,15 +1,7 @@
 <div class="container-fluid">
   <h4>Dashboard</h4>
   <hr>
-  <ul class="nav nav-tabs mb-3" [ngClass]="tablayout">
-    <li class="nav-item">
-      <a class="nav-link" aria-current="page" routerLink="observables" routerLinkActive="active">Observables</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="signals" routerLinkActive="active">Signals</a>
-    </li>
-
-  </ul>
+  <app-nav [navLinks]="navItems" [tablayout]="tablayout"></app-nav>
   <router-outlet></router-outlet>
   <!-- routes children de dashboard -->
 </div>

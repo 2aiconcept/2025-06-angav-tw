@@ -2,8 +2,10 @@
   <div class="row align-items-center">
 
     <div class="col">
-      <h1 class="h3 mb-0 text-primary">Mini CRM - Formation Angular avancé</h1>
+      <h1 class="h3 mb-0 text-primary">Mini CRM - Formation Angular avancé <span>v {{numVersion()}}</span></h1>
+
     </div>
+
     <div class="col-auto">
       @if (!isLoggedIn()) {
       <span class="text-muted">Bienvenue dans votre CRM</span>

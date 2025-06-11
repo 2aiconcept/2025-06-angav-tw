@@ -7,6 +7,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { RegisterData } from '@auth/interfaces';
+import { AuthService } from '@auth/services';
 
 @Component({
   selector: 'app-signup-page',
@@ -20,6 +22,7 @@ export class SignupPageComponent {
   signupError = '';
 
   private fb = inject(FormBuilder);
+  private authService = inject(AuthService);
 
   constructor() {
     this.form = this.fb.group({
@@ -46,7 +49,19 @@ export class SignupPageComponent {
       this.isLoading = true;
       this.signupError = '';
 
-      console.log(this.form.value);
+      const signupData: RegisterData = this.form.value;
+
+      this.authService.signup(signupData).subscribe({
+        next: () => {
+          this.isLoading = false;
+          // Navigation automatique via handleAuthSuccess
+        },
+        error: (error) => {
+          this.isLoading = false;
+          this.signupError =
+            error.message || "Une erreur est survenue lors de l'inscription";
+        },
+      });
     }
   }
 }
