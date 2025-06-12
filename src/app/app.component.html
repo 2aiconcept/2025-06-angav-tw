@@ -1,9 +1,10 @@
 <app-ui-layout>
   <app-header header></app-header>
   <nav nav class="mt-2 p-2">
-    @if (!isLoggedIn()) {
+    @if (isLoggedIn()) {
     <app-nav [navLinks]="navItems" [tablayout]="tablayout" textColor="text-white"></app-nav>
     }
+    <button (click)="check()">check</button>
   </nav>
   <hr>
   <p class="text-white p-4" version>v {{numVersion()}}</p>

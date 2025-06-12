@@ -1,5 +1,5 @@
 // signup-page.component.ts
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -15,6 +15,7 @@ import { AuthService } from '@auth/services';
   imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './signup-page.component.html',
   styleUrl: './signup-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignupPageComponent {
   form!: FormGroup;
@@ -50,7 +51,6 @@ export class SignupPageComponent {
       this.signupError = '';
 
       const signupData: RegisterData = this.form.value;
-
       this.authService.signup(signupData).subscribe({
         next: () => {
           this.isLoading = false;

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -6,17 +6,21 @@ import {
   Validators,
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { LoginCredentials } from '@auth/interfaces';
+import { AuthService } from '@auth/services';
 
 @Component({
   selector: 'app-signin-page',
   imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './signin-page.component.html',
   styleUrl: './signin-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SigninPageComponent {
   form!: FormGroup;
   isLoading = false;
   loginError = '';
+  private authService = inject(AuthService);
   private fb = inject(FormBuilder);
   constructor() {
     this.form = this.fb.group({
@@ -37,7 +41,19 @@ export class SigninPageComponent {
     if (this.form.valid) {
       this.isLoading = true;
       this.loginError = '';
-      console.log(this.form.value);
+
+      const signinData: LoginCredentials = this.form.value;
+      this.authService.signin(signinData).subscribe({
+        next: () => {
+          this.isLoading = false;
+          // Navigation automatique via handleAuthSuccess
+        },
+        error: (error) => {
+          this.isLoading = false;
+          this.loginError =
+            error.message || "Une erreur est survenue lors de l'inscription";
+        },
+      });
     }
   }
 }

@@ -10,12 +10,12 @@ import { ApiService } from '@shared/services';
 export class OrderService {
   private readonly apiService = inject(ApiService);
   private readonly endpoint = '/orders';
-
   // Méthodes CRUD principales
 
   /**
    * Récupère toutes les commandes
    */
+
   getAll(): Observable<IOrder[]> {
     return this.apiService.get<IOrder[]>(this.endpoint);
   }

@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrderFormComponent } from '@orders/components';
 import { IOrder } from '@orders/interfaces';
@@ -10,6 +10,7 @@ import { OrderService } from '@orders/services';
   imports: [AsyncPipe, OrderFormComponent],
   templateUrl: './order-edit-page.component.html',
   styleUrl: './order-edit-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderEditPageComponent {
   private readonly orderService = inject(OrderService);

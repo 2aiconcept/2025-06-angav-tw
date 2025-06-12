@@ -1,5 +1,10 @@
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  inject,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { IOrder } from '@orders/interfaces';
 import { OrderService } from '@orders/services';
@@ -9,13 +14,22 @@ import { OrderService } from '@orders/services';
   imports: [AsyncPipe, CurrencyPipe],
   templateUrl: './order-list-page.component.html',
   styleUrl: './order-list-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderListPageComponent {
   private readonly orderService = inject(OrderService);
   private readonly router = inject(Router);
+  // private readonly cdr = inject(ChangeDetectorRef);
 
   // Initialisation directe - Plus simple !
   collection$ = this.orderService.getAll();
+  // collection: IOrder[] = [];
+  // constructor() {
+  //   this.orderService.getAll().subscribe((orders) => {
+  //     this.collection = orders;
+  //     this.cdr.markForCheck();
+  //   });
+  // }
 
   /**
    * Navigue vers le formulaire d'ajout

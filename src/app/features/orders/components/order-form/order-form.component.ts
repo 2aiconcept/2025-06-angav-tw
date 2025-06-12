@@ -1,4 +1,11 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  Output,
+} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -14,6 +21,7 @@ import { Order } from '@orders/models';
   imports: [ReactiveFormsModule],
   templateUrl: './order-form.component.html',
   styleUrl: './order-form.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderFormComponent {
   @Input() init!: IOrder;
@@ -21,8 +29,14 @@ export class OrderFormComponent {
   public states = Object.values(OrderStatus);
   public form!: FormGroup;
   private readonly fb = inject(FormBuilder);
-
+  constructor() {
+    console.log(this.init);
+  }
+  ngOnChanges() {
+    console.log(this.init);
+  }
   ngOnInit(): void {
+    console.log(this.init);
     this.form = this.fb.group({
       description: [this.init.description],
       customer: [this.init.customer],

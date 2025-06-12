@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { OrderFormComponent } from '@orders/components';
 import { IOrder } from '@orders/interfaces';
@@ -10,6 +10,7 @@ import { OrderService } from '@orders/services';
   imports: [OrderFormComponent],
   templateUrl: './order-add-page.component.html',
   styleUrl: './order-add-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderAddPageComponent {
   private readonly router = inject(Router);

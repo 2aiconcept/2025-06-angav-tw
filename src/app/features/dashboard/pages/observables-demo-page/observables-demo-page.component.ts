@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Component({
@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
   imports: [],
   templateUrl: './observables-demo-page.component.html',
   styleUrl: './observables-demo-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ObservablesDemoPageComponent {
   resultat = '';

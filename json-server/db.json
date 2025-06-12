@@ -34,17 +34,15 @@
       "password": "$2a$10$jcs8vrqHay2e/.W2mq/vSO1qGRlgIQTqLEob1OjB9XsEfs1ejXNzy",
       "username": "Christophe",
       "id": "JoPLu9R"
+    },
+    {
+      "email": "test4@mini-crm.com",
+      "password": "$2a$10$X1RGWlev1gwb8EaLGynM9OZMJDPttk5yJjjVMozZ1ihQ8if3cd2gy",
+      "username": "Admin",
+      "id": "vcClEIM"
     }
   ],
   "orders": [
-    {
-      "id": "xYz789E",
-      "description": "souris gaming",
-      "quantity": 5,
-      "price": 80,
-      "status": "pending",
-      "customer": "Gaming Store"
-    },
     {
       "id": "mNp456F",
       "description": "clavier mécanique",

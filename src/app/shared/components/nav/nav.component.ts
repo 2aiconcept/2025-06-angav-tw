@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { INavLink } from '@shared/interfaces';
 
@@ -8,6 +8,7 @@ import { INavLink } from '@shared/interfaces';
   imports: [NgClass, RouterLink, RouterLinkActive],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavComponent {
   navLinks = input<INavLink[]>();

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AuthService } from '@auth/services';
 import { SignalDataService } from '@dashboard/services';
 import { HeaderComponent, UiLayoutComponent } from '@layout/components';
@@ -10,6 +10,7 @@ import { INavLink } from '@shared/interfaces';
   imports: [UiLayoutComponent, HeaderComponent, NavComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   authService = inject(AuthService);
@@ -27,4 +28,10 @@ export class AppComponent {
     },
   ];
   tablayout = 'flex-column nav-pills';
+  ngDoCheck() {
+    console.log('AppComponent ngDoCheck');
+  }
+  check() {
+    console.log('check');
+  }
 }
