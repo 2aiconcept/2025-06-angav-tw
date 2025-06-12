@@ -12,10 +12,13 @@ export class AuthEffects {
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.login),
-      switchMap(({ credentials }) => this.authService.signin(credentials)),
-      map((response) => AuthActions.loginSuccess({ response: response })),
-      catchError((error) =>
-        of(AuthActions.loginFailure({ error: error.message }))
+      switchMap(({ credentials }) =>
+        this.authService.signin(credentials).pipe(
+          map((response) => AuthActions.loginSuccess({ response: response })),
+          catchError((error) =>
+            of(AuthActions.loginFailure({ error: error.message }))
+          )
+        )
       )
     )
   );
