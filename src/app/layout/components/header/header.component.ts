@@ -14,6 +14,7 @@ export class HeaderComponent {
   numVersion = this.signalService.version;
   authService = inject(AuthService);
   isLoggedIn = this.authService.isLoggedIn;
+
   logOut() {
     this.authService.logout();
   }

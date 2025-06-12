@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { INavLink } from '@shared/interfaces';
 
@@ -10,10 +10,7 @@ import { INavLink } from '@shared/interfaces';
   styleUrl: './nav.component.scss',
 })
 export class NavComponent {
-  // 1er input : NarLink[]
-  @Input() navLinks: INavLink[] = [];
-  // 2eme input : string (className)
-  @Input() tablayout: string = '';
-  // 3eme input : string text color
-  @Input() textColor: string = '';
+  navLinks = input<INavLink[]>();
+  tablayout = input<string>('');
+  textColor = input<string>('');
 }

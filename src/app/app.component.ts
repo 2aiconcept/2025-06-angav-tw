@@ -1,10 +1,8 @@
-import { NgClass } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '@auth/services';
 import { SignalDataService } from '@dashboard/services';
 import { HeaderComponent, UiLayoutComponent } from '@layout/components';
-import { NavComponent } from '@shared/components/nav/nav.component';
+import { NavComponent } from '@shared/components';
 import { INavLink } from '@shared/interfaces';
 
 @Component({
