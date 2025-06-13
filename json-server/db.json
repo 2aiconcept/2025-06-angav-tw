@@ -50,22 +50,6 @@
   ],
   "orders": [
     {
-      "id": "mNp456F",
-      "description": "clavier mécanique",
-      "quantity": 3,
-      "price": 150,
-      "status": "complete",
-      "customer": "Office Pro"
-    },
-    {
-      "id": "qRs321G",
-      "description": "webcam HD",
-      "quantity": 1,
-      "price": 200,
-      "status": "pending",
-      "customer": "Video Conf Ltd"
-    },
-    {
       "description": "écran",
       "customer": "Atos",
       "quantity": 1,
