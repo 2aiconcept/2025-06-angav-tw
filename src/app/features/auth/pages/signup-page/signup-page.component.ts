@@ -10,6 +10,7 @@ import {
 import { RouterLink } from '@angular/router';
 import { RegisterData } from '@auth/interfaces';
 import { AuthActions } from '@auth/store';
+import { AuthFacade } from '@auth/store/auth.facade';
 import { selectAuthError, selectAuthLoading } from '@auth/store/auth.selectors';
 import { Store } from '@ngrx/store';
 
@@ -21,10 +22,10 @@ import { Store } from '@ngrx/store';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignupPageComponent {
-  private store = inject(Store);
+  private facade = inject(AuthFacade);
   form!: FormGroup;
-  isLoading$ = this.store.select(selectAuthLoading);
-  signupError$ = this.store.select(selectAuthError);
+  isLoading$ = this.facade.isLoading$;
+  signupError$ = this.facade.error$;
 
   private fb = inject(FormBuilder);
 
@@ -51,7 +52,7 @@ export class SignupPageComponent {
   onSubmit() {
     if (this.form.valid) {
       const registerData: RegisterData = this.form.value;
-      this.store.dispatch(AuthActions.register({ registerData }));
+      this.facade.register(registerData);
     }
   }
 }

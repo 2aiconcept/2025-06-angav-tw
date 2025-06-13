@@ -9,6 +9,7 @@ import {
 import { RouterLink } from '@angular/router';
 import { LoginCredentials } from '@auth/interfaces';
 import { AuthActions } from '@auth/store';
+import { AuthFacade } from '@auth/store/auth.facade';
 import { selectAuthError, selectAuthLoading } from '@auth/store/auth.selectors';
 import { Store } from '@ngrx/store';
 
@@ -20,10 +21,10 @@ import { Store } from '@ngrx/store';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SigninPageComponent {
-  private store = inject(Store);
+  private facade = inject(AuthFacade);
   form!: FormGroup;
-  isLoading$ = this.store.select(selectAuthLoading);
-  loginError$ = this.store.select(selectAuthError);
+  isLoading$ = this.facade.isLoading$;
+  loginError$ = this.facade.error$;
   private fb = inject(FormBuilder);
   constructor() {
     this.form = this.fb.group({
@@ -43,7 +44,7 @@ export class SigninPageComponent {
   onSubmit() {
     if (this.form.valid) {
       const credentials: LoginCredentials = this.form.value;
-      this.store.dispatch(AuthActions.login({ credentials }));
+      this.facade.login(credentials);
     } else {
       // === FORMULAIRE INVALIDE ===
 
