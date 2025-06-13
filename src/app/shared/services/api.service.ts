@@ -77,6 +77,8 @@ export class ApiService {
 
     if (error.status === 0) {
       errorMessage = 'Impossible de contacter le serveur';
+    } else if (error.status === 400) {
+      errorMessage = 'Email ou mot de passe incorrect ';
     } else if (error.status === 401) {
       errorMessage = 'Non autorisé';
     } else if (error.status === 404) {

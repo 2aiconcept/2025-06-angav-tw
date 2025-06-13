@@ -1,4 +1,5 @@
 // signup-page.component.ts
+import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {
   FormBuilder,
@@ -8,22 +9,24 @@ import {
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { RegisterData } from '@auth/interfaces';
-import { AuthService } from '@auth/services';
+import { AuthActions } from '@auth/store';
+import { selectAuthError, selectAuthLoading } from '@auth/store/auth.selectors';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-signup-page',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, AsyncPipe],
   templateUrl: './signup-page.component.html',
   styleUrl: './signup-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignupPageComponent {
+  private store = inject(Store);
   form!: FormGroup;
-  isLoading = false;
-  signupError = '';
+  isLoading$ = this.store.select(selectAuthLoading);
+  signupError$ = this.store.select(selectAuthError);
 
   private fb = inject(FormBuilder);
-  private authService = inject(AuthService);
 
   constructor() {
     this.form = this.fb.group({
@@ -47,21 +50,8 @@ export class SignupPageComponent {
 
   onSubmit() {
     if (this.form.valid) {
-      this.isLoading = true;
-      this.signupError = '';
-
-      const signupData: RegisterData = this.form.value;
-      this.authService.signup(signupData).subscribe({
-        next: () => {
-          this.isLoading = false;
-          // Navigation automatique via handleAuthSuccess
-        },
-        error: (error) => {
-          this.isLoading = false;
-          this.signupError =
-            error.message || "Une erreur est survenue lors de l'inscription";
-        },
-      });
+      const registerData: RegisterData = this.form.value;
+      this.store.dispatch(AuthActions.register({ registerData }));
     }
   }
 }

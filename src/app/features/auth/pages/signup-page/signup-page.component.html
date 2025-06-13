@@ -62,13 +62,14 @@
             </div>
 
             <!-- Error message -->
-            @if (signupError) {
+            @if (signupError$ | async; as signupError) {
             <div class="alert alert-danger" role="alert">
               {{ signupError }}
             </div>
             }
 
             <!-- Submit button -->
+            @let isLoading = isLoading$ | async;
             <button type="submit" class="btn btn-primary w-100" [disabled]="form.invalid || isLoading">
               @if (isLoading) {
               <span class="spinner-border spinner-border-sm me-2" role="status"></span>

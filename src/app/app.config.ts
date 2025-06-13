@@ -15,7 +15,8 @@ import { authInterceptor } from '@auth/interceptors/auth.interceptor';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideEffects } from '@ngrx/effects';
-import { authReducer } from '@auth/store';
+import { authReducer } from '@auth/store/auth.reducer';
+import { authEffects } from '@auth/store/auth.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -26,6 +27,6 @@ export const appConfig: ApplicationConfig = {
       auth: authReducer, // pas AuthState !
     }),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
-    provideEffects(),
+    provideEffects(authEffects),
   ],
 };

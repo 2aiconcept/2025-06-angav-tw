@@ -41,31 +41,4 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
       return throwError(() => error);
     })
   );
-
-  // function shouldAddToken(req: any): boolean {
-  // function shouldAddToken(token: string): boolean {
-  // === ENDPOINTS PUBLICS (pas besoin de token) ===
-  // const publicEndpoints = [
-  //   '/signin', // Page de connexion
-  //   '/login', // API de connexion
-  //   '/register', // API d'inscription
-  // ];
-
-  // Vérification si l'URL contient un endpoint public
-  // const isPublicEndpoint = publicEndpoints.some((endpoint) =>
-  //   req.url.includes(endpoint)
-  // );
-
-  // Si c'est un endpoint public, pas de token
-  // if (isPublicEndpoint) {
-  //   return false;
-  // }
-
-  //   if (!token) {
-  //     return false;
-  //   }
-
-  //   // Pour toutes les autres requêtes : ajouter le token
-  //   return true;
-  // }
 };

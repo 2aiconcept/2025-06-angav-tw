@@ -1,6 +1,5 @@
 // auth/store/index.ts
-export * from './auth.actions';
-export * from './auth.reducer';
-// export * from './auth.effects';
-// export * from './auth.selectors';
-// export { AuthState } from './auth.reducer';
+export * as AuthActions from './auth.actions';
+export * as AuthReducer from './auth.reducer';
+export * as AuthEffects from './auth.effects';
+export * as AuthSelectors from './auth.selectors';

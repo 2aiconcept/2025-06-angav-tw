@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {
   FormBuilder,
@@ -7,20 +8,22 @@ import {
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { LoginCredentials } from '@auth/interfaces';
-import { AuthService } from '@auth/services';
+import { AuthActions } from '@auth/store';
+import { selectAuthError, selectAuthLoading } from '@auth/store/auth.selectors';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-signin-page',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, AsyncPipe],
   templateUrl: './signin-page.component.html',
   styleUrl: './signin-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SigninPageComponent {
+  private store = inject(Store);
   form!: FormGroup;
-  isLoading = false;
-  loginError = '';
-  private authService = inject(AuthService);
+  isLoading$ = this.store.select(selectAuthLoading);
+  loginError$ = this.store.select(selectAuthError);
   private fb = inject(FormBuilder);
   constructor() {
     this.form = this.fb.group({
@@ -39,21 +42,16 @@ export class SigninPageComponent {
 
   onSubmit() {
     if (this.form.valid) {
-      this.isLoading = true;
-      this.loginError = '';
+      const credentials: LoginCredentials = this.form.value;
+      this.store.dispatch(AuthActions.login({ credentials }));
+    } else {
+      // === FORMULAIRE INVALIDE ===
 
-      const signinData: LoginCredentials = this.form.value;
-      this.authService.signin(signinData).subscribe({
-        next: () => {
-          this.isLoading = false;
-          // Navigation automatique via handleAuthSuccess
-        },
-        error: (error) => {
-          this.isLoading = false;
-          this.loginError =
-            error.message || "Une erreur est survenue lors de l'inscription";
-        },
-      });
+      // Marque tous les champs comme "touched" pour afficher les erreurs
+      this.form.markAllAsTouched();
+
+      // Log pour le débogage
+      console.log('Formulaire invalide:', this.form.errors);
     }
   }
 }

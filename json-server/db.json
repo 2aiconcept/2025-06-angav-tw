@@ -40,6 +40,12 @@
       "password": "$2a$10$X1RGWlev1gwb8EaLGynM9OZMJDPttk5yJjjVMozZ1ihQ8if3cd2gy",
       "username": "Admin",
       "id": "vcClEIM"
+    },
+    {
+      "email": "test5@mini-crm.com",
+      "password": "$2a$10$dZvcJroXLWDLkqg2PdiLF.fWBhKwD3cBymt36xdRIG/hBgTJsKWZi",
+      "username": "Admin",
+      "id": "N21e4zL"
     }
   ],
   "orders": [
