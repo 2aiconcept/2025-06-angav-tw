@@ -17,6 +17,8 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideEffects } from '@ngrx/effects';
 import { authReducer } from '@auth/store/auth.reducer';
 import { authEffects } from '@auth/store/auth.effects';
+import { orderEffects } from '@orders/store/order.effects';
+import { ordersReducer } from '@orders/store/order.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,9 +26,10 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(withInterceptors([authInterceptor])),
     provideStore({
-      auth: authReducer, // pas AuthState !
+      auth: authReducer,
+      orders: ordersReducer,
     }),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
-    provideEffects(authEffects),
+    provideEffects(authEffects, orderEffects),
   ],
 };
