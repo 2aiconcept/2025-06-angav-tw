@@ -1,7 +1,8 @@
 <div class="container-fluid">
   <h4>Editer une commande</h4>
   <hr>
-  @if (item$ | async; as item) {
-  <app-order-form [init]="item" (submited)="action($event)"></app-order-form>
+  @if (order()) {
+  <app-order-form [init]="order()!" (submited)="action($event)"></app-order-form>
+  <!-- Le ! après order() dit à TypeScript : "Je garantis que cette valeur n'est pas null ou undefined", ce qui transforme le type IOrder | null en IOrder. -->
   }
 </div>

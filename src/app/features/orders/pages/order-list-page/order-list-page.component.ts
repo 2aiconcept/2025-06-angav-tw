@@ -1,35 +1,27 @@
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { IOrder } from '@orders/interfaces';
-import { OrderService } from '@orders/services';
+import { OrderFacade } from '@orders/store/order.facade';
 
 @Component({
   selector: 'app-order-list-page',
-  imports: [AsyncPipe, CurrencyPipe],
+  imports: [CurrencyPipe],
   templateUrl: './order-list-page.component.html',
   styleUrl: './order-list-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderListPageComponent {
-  private readonly orderService = inject(OrderService);
+  private readonly orderFacade = inject(OrderFacade);
   private readonly router = inject(Router);
-  // private readonly cdr = inject(ChangeDetectorRef);
 
-  // Initialisation directe - Plus simple !
-  collection$ = this.orderService.getAll();
-  // collection: IOrder[] = [];
-  // constructor() {
-  //   this.orderService.getAll().subscribe((orders) => {
-  //     this.collection = orders;
-  //     this.cdr.markForCheck();
-  //   });
-  // }
+  collection = this.orderFacade.orders;
+  isLoading = this.orderFacade.isLoading;
+  error = this.orderFacade.error;
+
+  constructor() {
+    this.orderFacade.loadOrders();
+  }
 
   /**
    * Navigue vers le formulaire d'ajout
@@ -54,10 +46,9 @@ export class OrderListPageComponent {
         `Êtes-vous sûr de vouloir supprimer la commande "${order.description}" ?`
       )
     ) {
-      this.orderService.delete(order.id!).subscribe(() => {
-        // Recharge la liste après suppression
-        this.collection$ = this.orderService.getAll();
-      });
+      if (order.id) {
+        this.orderFacade.delete(order.id);
+      }
     }
   }
 

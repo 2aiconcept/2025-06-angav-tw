@@ -3,6 +3,7 @@ import {
   Component,
   EventEmitter,
   inject,
+  input,
   Input,
   Output,
 } from '@angular/core';
@@ -24,7 +25,7 @@ import { Order } from '@orders/models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderFormComponent {
-  @Input() init!: IOrder;
+  init = input<IOrder>();
   @Output() submited: EventEmitter<IOrder> = new EventEmitter<IOrder>();
   public states = Object.values(OrderStatus);
   public form!: FormGroup;

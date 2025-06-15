@@ -1,9 +1,14 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrderFormComponent } from '@orders/components';
 import { IOrder } from '@orders/interfaces';
-import { OrderService } from '@orders/services';
+import { OrderFacade } from '@orders/store/order.facade';
 
 @Component({
   selector: 'app-order-edit-page',
@@ -13,14 +18,16 @@ import { OrderService } from '@orders/services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderEditPageComponent {
-  private readonly orderService = inject(OrderService);
   private readonly route = inject(ActivatedRoute);
-  private readonly router = inject(Router);
-  id = this.route.snapshot.params['id'];
-  public item$ = this.orderService.getItemById(this.id);
-  public action(item: IOrder): void {
-    this.orderService.update(item).subscribe(() => {
-      this.router.navigate(['/orders']);
-    });
+  private readonly orderFacade = inject(OrderFacade);
+  private id = this.route.snapshot.params['id'];
+  public order = this.orderFacade.selectedOrder;
+
+  constructor() {
+    this.orderFacade.getById(this.id);
+  }
+
+  public action(order: IOrder): void {
+    this.orderFacade.update(order);
   }
 }

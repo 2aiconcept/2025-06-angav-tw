@@ -12,13 +12,31 @@
 </div>
 <hr>
 
+<!-- Gestion des erreurs -->
+@if (error()) {
+<div class="alert alert-danger alert-dismissible" role="alert">
+  <i class="bi bi-exclamation-triangle me-2"></i>
+  <strong>Erreur :</strong> {{ error() }}
+</div>
+}
+
+<!-- Loading Spinner -->
+@if (isLoading()) {
+<div class="text-center py-4">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Chargement...</span>
+  </div>
+  <p class="mt-2 text-muted">Chargement des commandes...</p>
+</div>
+}
+
 <!-- Table des commandes -->
 <div class="card">
   <div class="card-body p-0">
 
     <!-- Table -->
-    @if (collection$ | async; as collection) {
-    @if (collection.length > 0) {
+    @if (collection()) {
+    @if (collection().length > 0) {
     <div class="table-responsive">
       <table class="table table-hover mb-0">
         <thead class="table-light">
@@ -34,7 +52,7 @@
           </tr>
         </thead>
         <tbody>
-          @for (item of collection; track item.id) {
+          @for (item of collection(); track item.id) {
           <tr>
             <!-- ID -->
             <td>
