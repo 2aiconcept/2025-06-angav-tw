@@ -2,6 +2,8 @@ import {
   ApplicationConfig,
   provideZoneChangeDetection,
   isDevMode,
+  DEFAULT_CURRENCY_CODE,
+  LOCALE_ID,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
@@ -16,6 +18,12 @@ import { orderEffects } from '@orders/store/order.effects';
 import { ordersReducer } from '@orders/store/order.reducer';
 import { httpInterceptor } from '@shared/interceptors/http.interceptor';
 
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+
+// IMPORTANT : Enregistrer les données de locale AVANT la config
+registerLocaleData(localeFr);
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
@@ -27,5 +35,7 @@ export const appConfig: ApplicationConfig = {
     }),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideEffects(authEffects, orderEffects),
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
+    { provide: LOCALE_ID, useValue: 'fr-FR' },
   ],
 };

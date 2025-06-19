@@ -72,15 +72,13 @@
 
             <!-- Prix unitaire -->
             <td class="text-end">
-              {{ item.price | currency : "EUR" : "symbol" : "1.2-2" }}
+              {{ item.price | currency }}
             </td>
 
             <!-- Total -->
             <td class="text-end">
               <strong>{{
-                item.price
-                  | total : item.quantity
-                  | currency : "EUR" : "symbol" : "1.2-2"
+                item.price | total : item.quantity | currency
               }}</strong>
             </td>
 
