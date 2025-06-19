@@ -11,8 +11,11 @@ export class AuthFacade {
   private store = inject(Store);
 
   // === SELECTORS - États observables ===
-  readonly isLoading$ = this.store.select(selectAuthLoading);
-  readonly error$ = this.store.select(selectAuthError);
+  // readonly isLoading$ = this.store.select(selectAuthLoading);
+  // readonly error$ = this.store.select(selectAuthError);
+
+  readonly isLoading = this.store.selectSignal(selectAuthLoading);
+  readonly error = this.store.selectSignal(selectAuthError);
 
   // === ACTIONS - Méthodes pour dispatcher ===
 

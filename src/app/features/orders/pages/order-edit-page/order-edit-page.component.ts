@@ -12,7 +12,7 @@ import { OrderFacade } from '@orders/store/order.facade';
 
 @Component({
   selector: 'app-order-edit-page',
-  imports: [AsyncPipe, OrderFormComponent],
+  imports: [OrderFormComponent],
   templateUrl: './order-edit-page.component.html',
   styleUrl: './order-edit-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

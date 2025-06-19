@@ -15,7 +15,7 @@ import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-signin-page',
-  imports: [ReactiveFormsModule, RouterLink, AsyncPipe],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './signin-page.component.html',
   styleUrl: './signin-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,8 +23,8 @@ import { Store } from '@ngrx/store';
 export class SigninPageComponent {
   private facade = inject(AuthFacade);
   form!: FormGroup;
-  isLoading$ = this.facade.isLoading$;
-  loginError$ = this.facade.error$;
+  isLoading = this.facade.isLoading;
+  loginError = this.facade.error;
   private fb = inject(FormBuilder);
   constructor() {
     this.form = this.fb.group({

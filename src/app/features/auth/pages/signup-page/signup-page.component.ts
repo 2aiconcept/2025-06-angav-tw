@@ -9,14 +9,11 @@ import {
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { RegisterData } from '@auth/interfaces';
-import { AuthActions } from '@auth/store';
 import { AuthFacade } from '@auth/store/auth.facade';
-import { selectAuthError, selectAuthLoading } from '@auth/store/auth.selectors';
-import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-signup-page',
-  imports: [ReactiveFormsModule, RouterLink, AsyncPipe],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './signup-page.component.html',
   styleUrl: './signup-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -24,8 +21,8 @@ import { Store } from '@ngrx/store';
 export class SignupPageComponent {
   private facade = inject(AuthFacade);
   form!: FormGroup;
-  isLoading$ = this.facade.isLoading$;
-  signupError$ = this.facade.error$;
+  isLoading = this.facade.isLoading;
+  signupError = this.facade.error;
 
   private fb = inject(FormBuilder);
 

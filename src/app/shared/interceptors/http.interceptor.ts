@@ -3,7 +3,7 @@ import { inject } from '@angular/core';
 import { AuthService } from '@auth/services';
 import { catchError, throwError } from 'rxjs';
 
-export const authInterceptor: HttpInterceptorFn = (req, next) => {
+export const httpInterceptor: HttpInterceptorFn = (req, next) => {
   // req = HttpRequest (objet statique)
   // next = fonction qui retourne Observable<HttpEvent>
   console.log(`INTERCEPTOR: ${req.method} ${req.url}`);
