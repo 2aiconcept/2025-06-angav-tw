@@ -3,10 +3,11 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { IOrder } from '@orders/interfaces';
 import { OrderFacade } from '@orders/store/order.facade';
+import { TotalPipe } from '@shared/pipes';
 
 @Component({
   selector: 'app-order-list-page',
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, TotalPipe],
   templateUrl: './order-list-page.component.html',
   styleUrl: './order-list-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -52,8 +53,8 @@ export class OrderListPageComponent {
     }
   }
 
-  getTotal(price: number, quantity: number): number {
-    console.log('total called');
-    return price * quantity;
-  }
+  // getTotal(price: number, quantity: number): number {
+  //   console.log('total called');
+  //   return price * quantity;
+  // }
 }
