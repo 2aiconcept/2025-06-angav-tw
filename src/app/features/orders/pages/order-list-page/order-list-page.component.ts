@@ -1,4 +1,4 @@
-import { AsyncPipe, CurrencyPipe } from '@angular/common';
+import { CurrencyPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { IOrder } from '@orders/interfaces';
@@ -19,9 +19,9 @@ export class OrderListPageComponent {
   isLoading = this.orderFacade.isLoading;
   error = this.orderFacade.error;
 
-  constructor() {
-    this.orderFacade.loadOrders();
-  }
+  // constructor() {
+  //   this.orderFacade.loadOrders();
+  // }
 
   /**
    * Navigue vers le formulaire d'ajout

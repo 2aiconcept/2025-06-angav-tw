@@ -47,7 +47,7 @@ export const deleteOrderFailure = createAction(
 // === ACTIONS ADD ORDER ===
 export const addOrder = createAction(
   '[Orders] Add Order',
-  props<{ order: IOrder }>()
+  props<{ order: IOrder; redirectTo?: string }>()
 );
 
 export const addOrderSuccess = createAction(
@@ -63,7 +63,7 @@ export const addOrderFailure = createAction(
 // === ACTIONS ADD ORDER ===
 export const updateOrder = createAction(
   '[Orders] Update Order',
-  props<{ order: IOrder }>()
+  props<{ order: IOrder; redirectTo?: string }>()
 );
 
 export const updateOrderSuccess = createAction(

@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
 import { OrderFormComponent } from '@orders/components';
 import { IOrder } from '@orders/interfaces';
 import { Order } from '@orders/models';
-import { OrderService } from '@orders/services';
+import { OrderFacade } from '@orders/store/order.facade';
 
 @Component({
   selector: 'app-order-add-page',
@@ -13,12 +12,9 @@ import { OrderService } from '@orders/services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderAddPageComponent {
-  private readonly router = inject(Router);
-  private readonly orderService = inject(OrderService);
+  private readonly facade = inject(OrderFacade);
   public item = new Order();
   public action(item: IOrder): void {
-    this.orderService.add(item).subscribe(() => {
-      this.router.navigate(['/orders']);
-    });
+    this.facade.add(item, '/orders');
   }
 }

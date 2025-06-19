@@ -54,7 +54,7 @@
       "customer": "Atos",
       "quantity": 1,
       "price": 400,
-      "status": "Pending",
+      "status": "Completed",
       "id": "LMbpXR0"
     },
     {
@@ -70,7 +70,7 @@
       "customer": "CGI",
       "quantity": 10,
       "price": 300,
-      "status": "Pending",
+      "status": "Completed",
       "id": "lFQTZsM"
     },
     {
@@ -80,6 +80,38 @@
       "price": 300,
       "status": "Pending",
       "id": "_pCBV0F"
+    },
+    {
+      "description": "souris gaming",
+      "customer": "Ib-Cegos",
+      "quantity": 1,
+      "price": 100,
+      "status": "Pending",
+      "id": "HJQlBoS"
+    },
+    {
+      "description": "souris gaming",
+      "customer": "Ib-Cegos",
+      "quantity": 1,
+      "price": 100,
+      "status": "Pending",
+      "id": "NH_4c9J"
+    },
+    {
+      "description": "souris gaming",
+      "customer": "2ai concept ltd",
+      "quantity": 1,
+      "price": 80,
+      "status": "Pending",
+      "id": "Gwg5ZzI"
+    },
+    {
+      "description": "ordinateur portable",
+      "customer": "2ai concept ltd",
+      "quantity": 1,
+      "price": 1500,
+      "status": "Pending",
+      "id": "FOqcNKY"
     }
   ]
 }

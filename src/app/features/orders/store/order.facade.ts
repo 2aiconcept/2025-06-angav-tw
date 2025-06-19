@@ -58,15 +58,15 @@ export class OrderFacade {
   /**
    * Ajoute une nouvelle commande
    */
-  add(order: IOrder): void {
-    this.store.dispatch(OrderActions.addOrder({ order }));
+  add(order: IOrder, route?: string): void {
+    this.store.dispatch(OrderActions.addOrder({ order, redirectTo: route }));
   }
 
   /**
    * Met à jour une commande existante
    */
-  update(order: IOrder): void {
-    this.store.dispatch(OrderActions.updateOrder({ order }));
+  update(order: IOrder, route?: string): void {
+    this.store.dispatch(OrderActions.updateOrder({ order, redirectTo: route }));
   }
 
   /**

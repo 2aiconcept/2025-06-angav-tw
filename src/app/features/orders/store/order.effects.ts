@@ -4,6 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { OrderService } from '@orders/services/order.service';
 import { exhaustMap, map, catchError, of } from 'rxjs';
 import * as OrderActions from './order.actions';
+import { Router } from '@angular/router';
 
 // === EFFECT LOAD ALL ORDERS ===
 export const loadOrdersEffect = createEffect(
@@ -43,14 +44,21 @@ export const deleteOrderEffect = createEffect(
 
 // === EFFECT ADD ORDER ===
 export const addOrderEffect = createEffect(
-  (actions$ = inject(Actions), orderService = inject(OrderService)) => {
+  (
+    actions$ = inject(Actions),
+    orderService = inject(OrderService),
+    router = inject(Router)
+  ) => {
     return actions$.pipe(
       ofType(OrderActions.addOrder),
-      exhaustMap(({ order }) =>
+      exhaustMap(({ order, redirectTo }) =>
         orderService.add(order).pipe(
-          map((createdOrder) =>
-            OrderActions.addOrderSuccess({ order: createdOrder })
-          ),
+          map((createdOrder) => {
+            if (redirectTo) {
+              router.navigate([redirectTo]);
+            }
+            return OrderActions.addOrderSuccess({ order: createdOrder });
+          }),
           catchError((error) =>
             of(OrderActions.addOrderFailure({ error: error.message }))
           )
@@ -63,14 +71,21 @@ export const addOrderEffect = createEffect(
 
 // === EFFECT UPDATE ORDER ===
 export const updateOrderEffect = createEffect(
-  (actions$ = inject(Actions), orderService = inject(OrderService)) => {
+  (
+    actions$ = inject(Actions),
+    orderService = inject(OrderService),
+    router = inject(Router)
+  ) => {
     return actions$.pipe(
       ofType(OrderActions.updateOrder),
-      exhaustMap(({ order }) =>
+      exhaustMap(({ order, redirectTo }) =>
         orderService.update(order).pipe(
-          map((updatedOrder) =>
-            OrderActions.updateOrderSuccess({ order: updatedOrder })
-          ),
+          map((updatedOrder) => {
+            if (redirectTo) {
+              router.navigate([redirectTo]);
+            }
+            return OrderActions.updateOrderSuccess({ order: updatedOrder });
+          }),
           catchError((error) =>
             of(OrderActions.updateOrderFailure({ error: error.message }))
           )
