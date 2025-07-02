@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { IOrder } from '@orders/interfaces';
 import { OrderFacade } from '@orders/store/order.facade';
 import { TotalPipe } from '@shared/pipes';
+import { ConfirmationService } from '@shared/services';
 
 @Component({
   selector: 'app-order-list-page',
@@ -15,6 +16,7 @@ import { TotalPipe } from '@shared/pipes';
 export class OrderListPageComponent {
   private readonly orderFacade = inject(OrderFacade);
   private readonly router = inject(Router);
+  private readonly confirmationService = inject(ConfirmationService);
 
   collection = this.orderFacade.orders;
   isLoading = this.orderFacade.isLoading;
@@ -43,7 +45,7 @@ export class OrderListPageComponent {
    */
   onDelete(order: IOrder): void {
     if (
-      confirm(
+      this.confirmationService.confirm(
         `Êtes-vous sûr de vouloir supprimer la commande "${order.description}" ?`
       )
     ) {

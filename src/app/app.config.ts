@@ -8,7 +8,11 @@ import {
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withInterceptors,
+  withFetch,
+} from '@angular/common/http';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideEffects } from '@ngrx/effects';
@@ -20,6 +24,10 @@ import { httpInterceptor } from '@shared/interceptors/http.interceptor';
 
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import {
+  provideClientHydration,
+  withEventReplay,
+} from '@angular/platform-browser';
 
 // IMPORTANT : Enregistrer les données de locale AVANT la config
 registerLocaleData(localeFr);
@@ -28,7 +36,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([httpInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([httpInterceptor])),
     provideStore({
       auth: authReducer,
       orders: ordersReducer,
@@ -37,5 +45,6 @@ export const appConfig: ApplicationConfig = {
     provideEffects(authEffects, orderEffects),
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
     { provide: LOCALE_ID, useValue: 'fr-FR' },
+    provideClientHydration(withEventReplay()),
   ],
 };
