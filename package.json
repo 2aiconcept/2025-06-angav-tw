@@ -10,7 +10,9 @@
     "test:watch": "jest --watchAll",
     "json-server": "node json-server/middleware.js",
     "analyze": "ng build --configuration production --stats-json && webpack-bundle-analyzer dist/mini-crm/stats.json",
-    "serve:ssr:mini-crm": "node dist/mini-crm/server/server.mjs"
+    "serve:ssr:mini-crm": "node dist/mini-crm/server/server.mjs",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "private": true,
   "dependencies": {
